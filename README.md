@@ -1,5 +1,7 @@
-![image](https://github.com/user-attachments/assets/b2abeba8-d53a-406d-9bc8-2e861fcf1356)# Biblioteca
-Proyecto bibilioteca
+![image](https://github.com/user-attachments/assets/b2abeba8-d53a-406d-9bc8-2e861fcf1356)
+
+# Biblioteca
+Proyecto Biblioteca
 
 Explicación de _PK_ y _FK_:
 _PK_ (Primary Key):
