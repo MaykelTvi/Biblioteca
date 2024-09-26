@@ -1,8 +1,10 @@
 
 # Biblioteca
+## Integrantes: Maykel Tvihaug. Bautista Menna Zujani.
+
 Proyecto Biblioteca
 La estructura para la base de datos son tres tablas fundamentales: 
-		Usuarios ! Libros ! Préstamos
+		Usuarios // Libros // Préstamos
 
 Cada usuario tiene un identificador único, el id_usuario, que actúa como clave primaria en la tabla Usuarios. De la misma manera, cada libro tiene un id_libro como clave primaria en la tabla Libros. La tabla Préstamos se encarga de conectar ambas entidades, utilizando tanto el id_usuario como el id_libro como claves foráneas para registrar al usuario que tiene prestado un libro. Esto permite controlar que solo un libro esté prestado a un único usuario, pero un usuario puede pedir distintos libros a lo largo del tiempo.
 
