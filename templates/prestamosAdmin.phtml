@@ -1,0 +1,39 @@
+<?php require_once './templates/header.phtml'?>
+<h1>Nuestros prestamos:</h1>
+<form class="form-control form-control-sm" method="post" action="addClient">
+    <label class="h5">Ingrese usuario registrado</label>
+        <input type="text" name="nombre" id="nombre">
+    </select>
+    <label class="h5">Ingrese el titulo del libro</label>
+        <input type="text" name="titulo" id="titulo">
+    </select>
+    <label class="h5">Ingrese la fecha del prestamo</label>
+        <input type="date" name="fecha" id="fecha">
+    </select>
+    <button type="submit" class='btn btn-success ml-auto'>Agregar</button>
+</form>
+<table class="table table-dark table-striped table-hover">
+    <thead>
+        <th>Usuario</th>
+        <th>Titulo del libro</th>
+        <th>Fecha del prestamo</th>
+        <th></th>
+        <th></th>
+    </thead>
+    <?php
+    foreach($list as $item):?>
+    
+    <tbody>
+        <tr>
+            <td><?= $item->id_usuario ?></td>
+            <td><?= $item->titulo_libro ?></td>
+            <td><?= $item->fecha_prestamo ?></td>
+            <td><a href="eliminarPrestamo/<?= $item->id ?>" type="button" class='btn btn-danger ml-auto'>Borrar</a></td>
+            <td><a href="editarPrestamo/<?= $item->id ?>" type="button" class='btn btn-success ml-auto'>Editar</a></td>
+
+        </tr>
+    </tbody>
+    <?php endforeach?> 
+</table>  
+
+<?php require_once './templates/footer.phtml'?>
