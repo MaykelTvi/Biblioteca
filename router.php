@@ -19,6 +19,11 @@ switch ($params[0]) {
         $authController = new authController();
         $authController->showLogin(); 
         break;
+        
+        case 'register':
+            $authController = new authController();
+            $authController->showRegister();
+            break;
 
     case 'auth':
         $authController = new authController();
