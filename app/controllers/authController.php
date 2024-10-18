@@ -45,42 +45,41 @@ class authController
         } else {
             return $this->view->showLogin('Campos incorrectos');
         }
-    }
-
-    public function register() {
-        // Verificar si los campos usuario y password están completos
-        if (!isset($_POST['usuario']) || empty($_POST['usuario'])) {
-            return $this->view->showError('Falta completar el usuario');
-        }
+    }public function register() {
+        // Mostrar los datos enviados (para depurar)
+        var_dump($_POST);
     
-        if (!isset($_POST['password']) || empty($_POST['password'])) {
-            return $this->view->showError('Falta completar la contraseña');
-        }
-    
-        // Ruta para procesar el registro
-        $usuario = $_POST['usuario'];
-        $password = $_POST['password'];
-    
-        // Verificar si el usuario ya existe en la base de datos usando el modelo en lugar de $this->db
-        $existingUser = $this->model->getByUser($usuario);  // Cambiamos $this->db a $this->model
-    
-        if ($existingUser) {
-            // Si el usuario ya existe, mostramos un error
-            return $this->view->showError('El correo ya está registrado. Intenta con otro.');
+        // Verificar si los campos 'usuario' y 'password' están completos
+        if (empty($_POST['usuario']) || empty($_POST['password'])) {
+            echo 'Falta completar todos los campos.';
         } else {
-            // Si el usuario no existe, registrar el nuevo usuario
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash seguro de la contraseña
+            // Obtener los valores del formulario
+            $usuario = $_POST['usuario'];
+            $password = $_POST['password'];
     
-            // Insertar el nuevo usuario en la base de datos usando el modelo en lugar de $this->db
-            if ($this->model->insertUser($usuario, $hashedPassword)) {  // Cambiamos $this->db a $this->model
-                // Si el registro es exitoso, redirigimos al usuario a la página principal
-                var_dump($existingUser);
+            // Verificar si el usuario ya existe en la base de datos
+            $userFromDB = $this->model->getByUser($usuario);
+    
+            if ($userFromDB) {
+                echo 'El usuario ya está registrado. Intenta con otro.';
             } else {
-                // En caso de error en el registro
-                return $this->view->showError('Error en el registro. Inténtalo de nuevo.');
+                // Si el usuario no existe, registrar el nuevo usuario
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    
+                // Insertar el nuevo usuario en la base de datos
+                if ($this->model->insertUser($usuario, $hashedPassword)) {
+                    // Redirigir a la página de login si el registro es exitoso
+                    header('Location: router.php?action=login');
+                    exit();  // Importante detener la ejecución después de la redirección
+                } else {
+                    echo 'Error en el registro. Inténtalo de nuevo.';
+                }
             }
         }
+        
+        
     }
+    
     
     
     public function logout()

@@ -1,7 +1,7 @@
 <?php require 'templates/header.phtml'; ?>
 
 <div class="mt-5 w-25 mx-auto">
-    <form method="POST" action="auth">
+    <form method="POST" action="http://localhost/Biblioteca/router.php?action=auth">">
         <div class="form-group">
             <label for="usuario">Email</label>
             <input type="text" required class="form-control" id="usuario" name="usuario" aria-describedby="userHelp">
@@ -17,7 +17,7 @@
             </div> 
         <?php endif ?>
        
-        <button type="submit" class="btn btn-primary mt-3">Entrar</button> <button  href="login" type="submit" class="btn btn-primary mt-3">Registrar</button>
+        <button type="submit" class="btn btn-primary mt-3">Entrar</button> <button  href="register" class="btn btn-primary mt-3">Registrar</button>
 
     </form>         
 </div>

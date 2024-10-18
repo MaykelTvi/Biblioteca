@@ -22,8 +22,15 @@ switch ($params[0]) {
         
         case 'register':
             $authController = new authController();
-            $authController->showRegister();
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                // Si la petición es POST, intenta registrar el usuario
+                $authController->register();
+            } else {
+                // Si no es POST, simplemente muestra el formulario
+                $authController->showRegister();
+            }
             break;
+        
 
     case 'auth':
         $authController = new authController();
