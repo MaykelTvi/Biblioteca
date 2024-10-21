@@ -16,3 +16,4 @@ En cuanto a otras posibles implementaciones de cara al futuro podemos añadir fu
 ##
 ![image](https://github.com/user-attachments/assets/3e67fa02-73b1-4aed-9210-843efb0e8cb3)
 
+## Todo el proyecto está subido en la rama master
