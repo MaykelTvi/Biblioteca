@@ -1,0 +1,27 @@
+<?php require 'templates/header.phtml'; ?>
+
+<form method="post" action="actualizarLibro/<?= $idLibro ?>" enctype="multipart/form-data">
+    <label>Ingrese el título del libro</label>
+    <input type="text" value="<?= $libro->titulo ?>" name="titulo" id="titulo">
+
+    <label>Ingrese el autor</label>
+    <input type="text" value="<?= $libro->autor ?>" name="autor" id="autor">
+
+    <label>¿El libro está prestado?</label>
+    <input type="hidden" name="prestado" value="0">
+    <input type="checkbox" name="prestado" id="prestado" value="1" <?php if($libro->prestado == "1") echo "checked"; ?>>
+
+    <label>Imagen actual</label><br>
+    <?php if (!empty($libro->imagen)): ?>
+        <img src="<?= BASE_URL . $libro->imagen ?>" alt="Imagen del libro" width="100" height="150"><br>
+    <?php else: ?>
+        No hay imagen disponible
+    <?php endif; ?><br>
+
+    <label>Cambiar imagen (opcional)</label>
+    <input type="file" name="imagen" id="imagen">
+
+    <button type="submit">Actualizar</button>
+</form>
+
+<?php require 'templates/footer.phtml' ?>

@@ -12,6 +12,9 @@ class prestamosView {
         $count = count($list);
         require './templates/prestamos.phtml';
     }
+    public function mostrarPrestamo($prestamo) {
+        require './templates/prestamo.phtml';
+    }
     public function mostrarError($error) {
         require './templates/error.phtml';
     }

@@ -4,7 +4,7 @@ class prestamosModel {
     private $db;
 
     function __construct() {
-        $this->db = new PDO('mysql:host=localhost;'.'dbname=tpe_biblioteca;charset=utf8', 'root', '');
+        $this->db = new PDO('mysql:host='.MYSQL_HOST.';dbname='.MYSQL_DB.';charset=utf8', MYSQL_USER, MYSQL_PASS);
     }
 
     function obtenerPrestamos() {
@@ -22,14 +22,23 @@ class prestamosModel {
         return $this->db->lastInsertId();
     }
 
-    function eliminarPrestamo($id) {
-        $query = $this->db->prepare('DELETE FROM prestamos WHERE id_prestamos = ?');
-        $query->execute([$id]);
+    function eliminarPrestamo($prestamoId) {
+        $query = $this->db->prepare('DELETE FROM prestamos WHERE id_prestamo = ?');
+        $query->execute([$prestamoId]);
     }
 
-    function actualizarPrestamo($id, $newIdUsuario, $newTitulo, $newFecha) {
-        $query = $this->db->prepare("UPDATE prestamos SET id_usuario='$newIdUsuario', titulo_libro='$newTitulo', 
-        fecha_prestamo='$newFecha' WHERE id = ?");
-        $query->execute(array($id));
+    function mostrarPrestamo($prestamoId) {
+        $query = $this->db->prepare('SELECT id_libro, id_usuario, fecha_prestamo FROM prestamos WHERE id_prestamo = ?');
+        $query->execute(array($prestamoId));
+        $prestamo = $query->fetch(PDO::FETCH_OBJ);
+
+        return $prestamo;
+    }
+
+    function actualizarPrestamo($id, $newIdLibro, $newIdUsuario, $newFecha) {
+        $query = $this->db->prepare("UPDATE prestamos 
+            SET id_libro = ?, id_usuario = ?, fecha_prestamo = ? 
+            WHERE id_prestamo = ?");
+        $query->execute(array($newIdLibro, $newIdUsuario, $newFecha, $id));
     }
 }

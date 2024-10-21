@@ -1,23 +1,14 @@
-<?php require_once './templates/header.phtml'?>
-
-<ul>
-        <li>Usuario: <?= $prestamo->id_usuario ?></li>
-        <li>Titulo libro: <?= $prestamo->titulo_libro ?></li>
-        <li>Fecha: <?= $prestamo->fecha_prestamo?></li>
-        
-    </ul>
-    <form method="post" action="actualizarPrestamo/<?=$prestamoId?>">
-    <label>Ingrese su usuario</label>
-        <input type="text" name="nombre" id="nombre">
-    </select>
-    <label>Ingrese el titulo del libro</label>
-        <input type="text" name="titulo" id="titulo">
-    </select>
-    <label>Ingrese la fecha del prestamo</label>
-        <input type="date" name="fecha" id="fecha">
-    </select>
+<?php require 'templates/header.phtml'; ?>
+<form method="post" action="actualizarPrestamo/<?=$prestamoId?>">
+    <label>Ingrese el ID del usuario</label>
+    <input type="number" value="<?= $prestamo->id_usuario ?>" name="id_usuario" id="id_usuario">
+    
+    <label>Ingrese el ID del libro</label>
+    <input type="number" value="<?= $prestamo->id_libro ?>" name="id_libro" id="id_libro">
+    
+    <label>Ingrese la fecha del préstamo</label>
+    <input type="date" value="<?= $prestamo->fecha_prestamo ?>" name="fecha_prestamo" id="fecha_prestamo">
+    
     <button type="submit">Actualizar</button>
 </form>
-
-
-<?php require_once './templates/footer.phtml'?>
+<?php require 'templates/footer.phtml'; ?>

@@ -1,0 +1,32 @@
+<?php require_once './templates/header.phtml' ?>
+<h1>Libros disponibles:</h1>
+
+<table class="table table-dark table-striped table-hover">
+    <thead>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Prestado</th>
+        <th>Imagen</th>
+        <th></th>
+    </thead>
+    <?php foreach($list as $item): ?>
+    
+    <tbody>
+        <tr>
+            <td><?= $item->id_libro ?></td>
+            <td><?= $item->titulo ?></td>
+            <td><?= $item->autor ?></td>
+            <td><?= $item->prestado ?></td>
+            <td>
+                <?php if (!empty($item->imagen)): ?>
+                    <img src="<?= BASE_URL . $item->imagen ?>" alt="Imagen del libro" width="100" height="150">
+                <?php else: ?>
+                    No hay imagen
+                <?php endif; ?>
+            </td>
+            <td><a href="libro/<?= $item->id_libro ?>" type="button" class='btn btn-success ml-auto'>Ver</a></td>
+        </tr>
+    </tbody>
+    <?php endforeach ?>
+</table>

@@ -1,0 +1,24 @@
+<?php require_once './templates/header.phtml'?>
+<h1>Usuarios:</h1>
+
+<table class="table table-dark table-striped table-hover">
+    <thead>
+        <th>ID</th>
+        <th>Usuario</th>
+        <th>Es admin?</th>
+        <th></th>
+    </thead>
+    <?php
+    foreach($list as $item):?>
+    
+    <tbody>
+        <tr>
+            <td><?= $item->id_usuario ?></td>
+            <td><?= $item->usuario ?></td>
+            <td><?= $item->admin ?></td>
+            <td><a href="usuario/<?= $item->id_usuario ?>" type="button" class='btn btn-success ml-auto'>Ver</a></td>
+        </tr>
+    </tbody>
+<?php endforeach?>
+</table>   
+<?php require_once './templates/footer.phtml'?>

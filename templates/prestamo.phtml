@@ -1,0 +1,12 @@
+<?php require 'templates/header.phtml' ?>
+
+
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-dark tamañoFuente"><span class="h3">ID Usuario <?= $prestamo->id_usuario ?></span></li>
+        <li class="list-group-item list-group-item-dark tamañoFuente"><span class="h3">ID Libro <?= $prestamo->id_libro ?></span></li>
+        <li class="list-group-item list-group-item-dark tamañoFuente"><span class="h3">Fecha Prestamo <?= $prestamo->fecha_prestamo ?></span></li>
+        
+    </ul>
+    <a href="home/" class='btn btn-success ml-auto'type="button">Volver al inicio</a>
+    <a href="prestamos/" class='btn btn-warning ml-auto' type="button">Ver todos los préstamos</a>
+<?php require 'templates/footer.phtml' ?>

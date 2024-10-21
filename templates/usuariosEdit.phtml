@@ -1,0 +1,13 @@
+<?php require 'templates/header.phtml'; ?>
+    <form method="post" action="actualizarUsuario/<?=$idusuario?>">
+    <label>Ingrese el usuario</label>
+        <input type="text" value="<?= $usuario->usuario ?>" name="usuario" id="usuario">
+    </select>
+    </select>
+    <label>Es admin?</label>
+        <input type="checkbox" <?php if($usuario->admin == "1") echo "checked"; ?> name="admin" id="admin">
+    </select>
+    <button type="submit">Actualizar</button>
+</form>
+
+<?php require 'templates/footer.phtml' ?>

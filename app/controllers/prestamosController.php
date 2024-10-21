@@ -1,7 +1,7 @@
 <?php
 require_once './app/models/prestamosModel.php';
 require_once './app/views/prestamosView.php';
-require_once './app/models/usuarioModel.php';
+require_once './app/models/UsuarioModel.php';
 
 class prestamosController {
     private $view;
@@ -11,14 +11,12 @@ class prestamosController {
     function __construct() {
         $this->view = new prestamosView();
         $this->model = new prestamosModel();
-        $this->userModel = new UserModel();
+        $this->userModel = new UsuarioModel();
     }
 
     function mostrarPrestamos() {
-        session_start(); // Asegúrate de que la sesión esté iniciada
         AuthHelper::init();
         $list = $this->model->obtenerPrestamos();
-    
         if (isset($_SESSION['id_usuario']) && $this->userModel->isAdmin($_SESSION['id_usuario'])) {
             $this->view->mostrarAdminPrestamos($list);
         } else {
@@ -45,18 +43,21 @@ class prestamosController {
         }
     }
 
-    function eliminarPrestamo($id){
+    function eliminarPrestamo($prestamoId){
+        AuthHelper::verify();
         if($this->userModel->isAdmin($_SESSION['id_usuario'])) {
-            $this->model->eliminarPrestamo($id);
+            $this->model->eliminarPrestamo($prestamoId);
             header('Location: ' . BASE_URL .'prestamos');
         }
 
     }
 
+
     function editarPrestamo($prestamoId){
+        AuthHelper::verify();
         if($this->userModel->isAdmin($_SESSION['id_usuario'])) {
-            $prestamo = $this->model->obtenerPrestamos($prestamoId);
-            $this->view->editarPrestamo($prestamo, $prestamoId);
+            $prestamo = $this->model->mostrarPrestamo($prestamoId);
+            $this->view->editarPrestamo($prestamoId, $prestamo);
         }
     }
 
@@ -71,7 +72,11 @@ class prestamosController {
         header('Location: ' . BASE_URL . 'prestamos');
     }
     function mostrarError() {
-        $error = "Hubo un error al procesar la solicitud."; // Definir el mensaje de error
+        $error = "Hubo un error al procesar la solicitud.";
         $this->view->mostrarError($error);
+    }
+    public function mostrarPrestamo($prestamoId) {
+        $prestamo = $this->model->mostrarPrestamo($prestamoId);
+        $this->view->mostrarPrestamo($prestamo);
     }
 }
